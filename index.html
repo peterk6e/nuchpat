@@ -1,57 +1,524 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Nuchanat Patanapanich</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-<style>
-html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuchanat Patanapanich | Senior Manager</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0077B5; /* LinkedIn Blue */
+            --secondary-color: #00A0DC;
+            --accent-color: #FFC107; /* A subtle gold for highlights */
+            --text-dark: #333;
+            --text-light: #555;
+            --bg-light: #f4f7f6;
+            --bg-white: #ffffff;
+            --border-color: #e0e0e0;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header --- */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at center, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: pulse 10s infinite ease-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.8); opacity: 0.5; }
+            50% { transform: scale(1.2); opacity: 0.8; }
+            100% { transform: scale(0.8); opacity: 0.5; }
+        }
+
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 6px solid rgba(255, 255, 255, 0.8);
+            object-fit: cover;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 1s ease-out;
+        }
+
+        .header h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.2em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            animation: slideInUp 1s ease-out;
+        }
+
+        .header p {
+            font-size: 1.4em;
+            font-weight: 300;
+            margin-top: 0;
+            opacity: 0.9;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .contact-info a i {
+            margin-right: 8px;
+            font-size: 1.3em;
+            color: var(--accent-color);
+        }
+
+        .contact-info a:hover {
+            transform: translateY(-3px);
+            color: var(--accent-color);
+        }
+
+        .btn-main {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--text-dark);
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            margin-top: 30px;
+            transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-main:hover {
+            background-color: #FFD740; /* Lighter gold */
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- Sections --- */
+        .section {
+            background-color: var(--bg-white);
+            padding: 60px 0;
+            margin-bottom: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+            opacity: 0; /* For scroll animation */
+            transform: translateY(20px); /* For scroll animation */
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .section.fade-in {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5em;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section h2::after {
+            content: '';
+            display: block;
+            width: 70px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 15px auto 0;
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            font-size: 1.15em;
+            line-height: 1.8;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            color: var(--text-light);
+            padding: 0 15px;
+        }
+
+        /* Experience Section */
+        .experience-item {
+            display: flex;
+            margin-bottom: 40px;
+            align-items: flex-start;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background-color: var(--bg-white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .experience-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .experience-icon {
+            flex-shrink: 0;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.8em;
+            margin-right: 25px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .experience-details {
+            flex-grow: 1;
+        }
+
+        .experience-details h3 {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--primary-color);
+            margin-top: 0;
+            margin-bottom: 5px;
+            font-size: 1.6em;
+            font-weight: 600;
+        }
+
+        .experience-details h4 {
+            color: var(--text-light);
+            margin-top: 0;
+            margin-bottom: 8px;
+            font-size: 1.2em;
+            font-weight: 400;
+        }
+
+        .experience-details .duration {
+            font-size: 0.95em;
+            color: #777;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .experience-details ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            color: var(--text-light);
+            font-size: 1.05em;
+        }
+
+        .experience-details ul li {
+            position: relative;
+            padding-left: 25px;
+            margin-bottom: 10px;
+        }
+
+        .experience-details ul li::before {
+            content: '\f00c'; /* FontAwesome check icon */
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            font-size: 0.9em;
+            top: 3px;
+        }
+
+        .experience-details .see-more {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .experience-details .see-more:hover {
+            color: var(--secondary-color);
+        }
+
+        /* --- Footer --- */
+        .footer {
+            background-color: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 50px;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        .footer p {
+            margin: 0;
+            font-size: 1em;
+            opacity: 0.8;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.8em;
+            margin: 0 15px;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+            transform: scale(1.1);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5em;
+            }
+            .header p {
+                font-size: 1.1em;
+            }
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            .section h2 {
+                font-size: 2em;
+            }
+            .experience-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+            .experience-icon {
+                margin: 0 0 20px 0;
+            }
+            .experience-details ul li {
+                text-align: left;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 40px 0;
+            }
+            .header h1 {
+                font-size: 2em;
+            }
+            .profile-img {
+                width: 150px;
+                height: 150px;
+            }
+            .contact-info a {
+                font-size: 1em;
+            }
+            .section {
+                padding: 40px 0;
+            }
+            .section h2 {
+                font-size: 1.8em;
+            }
+        }
+    </style>
 </head>
-<body class="w3-light-grey">
+<body>
 
-<!-- Page Container -->
-<div class="w3-content w3-margin-top" style="max-width:1400px;">
-
-  <!-- The Grid -->
-  <div class="w3-row-padding">
-  
-    <!-- Left Column -->
-    <div class="w3-third">
-    
-      <div class="w3-white w3-text-grey w3-card-4">
-        <div class="w3-display-container">
-          <img src="https://media.licdn.com/dms/image/D5603AQHaA9TJ8hCgAw/profile-displayphoto-shrink_200_200/0/1697156867239?e=1705536000&v=beta&t=uKgWsy_BHzuCBxcXcGnQbPGCDsGdSe6WXsn7Tz6qmX8" style="width:50%; margin:auto" alt="Avatar">
-          <div class="w3-display-bottom left w3-container w3-text-black">
-            <h2>Nuchanat Patanapanich</h2>
-          </div>
+    <header class="header">
+        <div class="container">
+            <img src="https://media.licdn.com/dms/image/D5603AQHaA9TJ8hCgAw/profile-displayphoto-shrink_200_200/0/1697156867239?e=1705536000&v=beta&t=uKgWsy_BHzuCBxcXcGnQbPGCDsGdSe6WXsn7Tz6qmX8" alt="Nuchanat Patanapanich" class="profile-img">
+            <h1>Nuchanat Patanapanich</h1>
+            <p>Senior Manager at ARUN AMC</p>
+            <div class="contact-info">
+                <a href="#"><i class="fas fa-briefcase"></i> Senior Manager</a>
+                <a href="#"><i class="fas fa-map-marker-alt"></i> Bangkok, TH</a>
+                <a href="mailto:nuchanat.pata@gmail.com"><i class="fas fa-envelope"></i> nuchanat.pata@gmail.com</a>
+                </div>
+            <a href="https://www.linkedin.com/in/nuchanat-patanapanich/" target="_blank" class="btn-main">View LinkedIn Profile <i class="fab fa-linkedin"></i></a>
         </div>
-        <div class="w3-container">
-          <p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i>Senior Manager</p>
-          <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i>Bangkok, TH</p>
-          <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i>nuchanat.pata@gmail.com</p>
-          <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i>*********</p>
-          <hr>
-          <p>More than 15 years of extensive experience in The leading asset management companies; 9 years in loan restructuring, 3 years in investors relations and 2 years in business development. Proactive, trustworthy, fast learner and high skilled in analyzing customers’ information, in negotiation and organization.
-          </p>
-          <p>Seeking a higher position and more responsibilities in loan restructuring field to have opportunities to take up challenges and prosperous experiences, utilizing my knowledge, as my working background would be of a great advantage to your organization.</p>
+    </header>
+
+    <main>
+        <section id="about" class="section container">
+            <h2>About Nuchanat</h2>
+            <p class="about-content">
+                With **over 15 years of extensive experience** in leading asset management companies, Nuchanat Patanapanich brings a robust background including **9 years in loan restructuring**, 3 years in investor relations, and 2 years in business development.
+            </p>
+            <p class="about-content">
+                A **proactive, trustworthy, and fast learner**, Nuchanat excels in **analyzing customer information, negotiation, and organization**. She is seeking a higher position with more responsibilities in the loan restructuring field, eager to embrace new challenges and contribute significant value through her deep expertise.
+            </p>
+        </section>
+
+        <section id="experience" class="section container">
+            <h2>Professional Experience</h2>
+
+            <div class="experience-item">
+                <div class="experience-icon"><i class="fas fa-user-tie"></i></div>
+                <div class="experience-details">
+                    <h3>Assistant to Chief Executive Officer</h3>
+                    <h4>ARUN AMC · Full-time</h4>
+                    <span class="duration">Mar 2025 - Present · 5 months</span>
+                    <p>Bangkok City, Thailand · On-site</p>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="experience-details">
+                    <h3>Business Support Analyst</h3>
+                    <h4>XSpring AMC · Full-time</h4>
+                    <span class="duration">Mar 2023 - Mar 2025 · 2 years 1 month</span>
+                    <p>Bangkok, Bangkok City, Thailand · On-site</p>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-icon"><i class="fas fa-handshake"></i></div>
+                <div class="experience-details">
+                    <h3>Business Development Manager</h3>
+                    <h4>Sukumvit Asset Management Co.Ltd · Full-time</h4>
+                    <span class="duration">Nov 2019 - Mar 2023 · 3 years 5 months</span>
+                    <p>Bangkok, Bangkok City, Thailand</p>
+                    <ul>
+                        <li>Assisted as project manager for Process Improvement, including questionnaire design, workshop facilitation, and reporting GRC policy gaps.</li>
+                        <li>Prepared comprehensive AMC competitor reports through financial analysis and NPL trend analysis to inform company strategies.</li>
+                        <li>Designed and improved the company's call flow system, optimizing for inbound-outbound and various operational scenarios.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-icon"><i class="fas fa-landmark"></i></div>
+                <div class="experience-details">
+                    <h3>Bangkok Commercial Asset Management Public Company Limited</h3>
+                    <h4>Full-time · 13 years 4 months</h4>
+                    <p>Bangkok, Bangkok City, Thailand</p>
+
+                    <h4>Investor Relations Officer in Strategy and Investment Department</h4>
+                    <span class="duration">Mar 2016 - Nov 2019 · 3 years 9 months</span>
+                    <ul>
+                        <li>Explained financial statements, strategies, and business procedures to financial analysts, legal advisors, and investors.</li>
+                        <li>Coordinated with financial analysts and legal advisors for prospectus preparation.</li>
+                        <li>Analyzed company performances for NPL and NPA businesses to support valuation.</li>
+                        <li>Supported the IPO process by preparing materials, organizing meetings, and reporting progress to management.</li>
+                    </ul>
+
+                    <h4>Loan Restructuring Officer in Loan Restructuring Department</h4>
+                    <span class="duration">Aug 2006 - Mar 2016 · 9 years 8 months</span>
+                    <ul>
+                        <li>Managed debts for 300-400 debtors across diverse business sectors and loan types (hotels, factories, SMEs, housing).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>Connect with Nuchanat Patanapanich</p>
+            <div class="social-links">
+                <a href="https://www.linkedin.com/in/nuchanat-patanapanich/" target="_blank" aria-label="LinkedIn Profile"><i class="fab fa-linkedin"></i></a>
+            </div>
+            <p>&copy; 2025 Nuchanat Patanapanich. All rights reserved.</p>
         </div>
-      </div>
-    </div>
+    </footer>
 
-  <!-- End Grid -->
-  </div>
-  
-  <!-- End Page Container -->
-</div>
+    <script>
+        // Smooth scroll for internal links (optional, if you add more sections)
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
 
-<footer class="w3-container w3-teal w3-center w3-margin-top">
-  <p>Find me on social media.</p>
-  <a href="https://www.linkedin.com/in/nuchanat-patanapanich/" class="fa fa-linkedin w3-hover-opacity"></a>
-</footer>
+        // Intersection Observer for fade-in animations
+        document.addEventListener("DOMContentLoaded", function() {
+            const sections = document.querySelectorAll('.section');
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target); // Stop observing once animated
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
 
 </body>
 </html>
